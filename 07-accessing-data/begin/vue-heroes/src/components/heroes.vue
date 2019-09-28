@@ -58,14 +58,15 @@ export default {
     HeroDetail,
   },
   mixins: [lifecycleHooks, heroWatchers],
-  created() {
-    this.loadHeroes();
+  async created() {
+    await this.loadHeroes();
+    //this would be called when? protect if line of code is here
   },
   methods: {
-    loadHeroes() {
+    async loadHeroes() {
       this.heroes = [];
       this.message = 'getting the heroes, please be patient';
-      this.heroes = data.ourHeroes;
+      this.heroes = await data.getHeroes();
       this.message = '';
     },
     cancelHero() {

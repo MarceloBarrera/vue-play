@@ -8,6 +8,17 @@
         <header class="card-header">
           <p class="card-header-title">heroes list</p>
         </header>
+        <ul class="list is-hoverable">
+          <li v-for="hero in heroes" :key="hero.id">
+            <a
+              class="list-item"
+              @click="selectedHero = hero"
+              :class="{ 'is-active': selectedHero === hero }"
+            >
+              <span> {{ hero.firstName }} </span></a
+            >
+          </li>
+        </ul>
       </div>
     </div>
     <div class="columns">

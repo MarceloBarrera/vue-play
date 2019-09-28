@@ -29,8 +29,8 @@
             </li>
           </ul>
           <!-- <heroes-list> -->
-
           <!-- <hero-detail> -->
+          <HeroDetail v-if="selectedHero" :hero="selectedHero" />
           <div v-if="selectedHero">
             <div class="card">
               <header class="card-header">
@@ -127,6 +127,8 @@ import { format } from 'date-fns';
 
 import { displayDateFormat, ourHeroes } from '../shared';
 
+import HeroDetail from '@/components/hero-detail';
+
 export default {
   name: 'Heroes',
   data() {
@@ -136,6 +138,9 @@ export default {
       message: '',
       capeMessage: '',
     };
+  },
+  components: {
+    HeroDetail,
   },
   created() {
     this.loadHeroes();
@@ -192,10 +197,7 @@ export default {
   watch: {
     'selectedHero.capeCounter': {
       immediate: true,
-      handler(newValue, oldValue) {
-        console.log(
-          `CapeCounter watcher evalauted. old=${oldValue}, new=${newValue}`
-        );
+      handler(newValue) {
         this.handleTheCapes(newValue);
       },
     },

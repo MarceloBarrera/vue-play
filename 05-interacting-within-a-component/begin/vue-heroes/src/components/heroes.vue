@@ -62,6 +62,19 @@
                 />
               </div>
               <div class="field">
+                <label class="label" for="originDate">origin Date</label>
+                <input
+                  type="date"
+                  class="input"
+                  id="originDate"
+                  v-model="selectedHero.originDate"
+                />
+                <p class="comment">
+                  My origin story began on
+                  {{ selectedHero.originDate | shortDate }}
+                </p>
+              </div>
+              <div class="field">
                 <label class="label" for="capeCounter">cape counter</label>
                 <input
                   class="input"
@@ -98,6 +111,10 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
+const inputDateFormat = 'YYYY-MM-DD';
+const displayDateFormat = 'MMM DD, YYYY';
+
 const ourHeroes = [
   {
     id: 10,
@@ -105,6 +122,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 1,
     description: 'fashionista',
+    originDate: format(new Date(1996, 5, 1), inputDateFormat),
   },
   {
     id: 20,
@@ -112,6 +130,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 3,
     description: 'the cat whisperer',
+    originDate: format(new Date(1998, 6, 1), inputDateFormat),
   },
   {
     id: 30,
@@ -119,6 +138,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 2,
     description: 'pen wielder',
+    originDate: format(new Date(1986, 3, 1), inputDateFormat),
   },
   {
     id: 40,
@@ -126,6 +146,7 @@ const ourHeroes = [
     lastName: 'Papa',
     capeCounter: 0,
     description: 'arc trooper',
+    originDate: format(new Date(1934, 5, 12), inputDateFormat),
   },
 ];
 export default {
@@ -194,6 +215,11 @@ export default {
         console.log(`Watcher evaluated, old=${oldValue} , new=${newValue}`);
         this.handleTheCapes(newValue);
       },
+    },
+  },
+  filters: {
+    shortDate: function(value) {
+      return format(value, displayDateFormat);
     },
   },
 };

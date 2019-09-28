@@ -82,7 +82,7 @@
 <script>
 import { format } from 'date-fns';
 
-import { displayDateFormat } from '../shared';
+import { displayDateFormat, lifecycleHooks } from '../shared';
 
 export default {
   name: 'HeroDetail',
@@ -97,6 +97,7 @@ export default {
       clonedHero: { ...this.hero }, //if hero has more deep level of objects you need a lib to do deep cloning, lodash or your own for example
     };
   },
+  mixins: [lifecycleHooks],
   computed: {
     fullName() {
       return this.clonedHero

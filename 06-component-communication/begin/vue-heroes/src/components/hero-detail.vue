@@ -106,10 +106,10 @@ export default {
   },
   methods: {
     cancelHero() {
-      // todo
+      this.$emit('cancel');
     },
     saveHero() {
-      //  todo
+      this.$emit('save', this.clonedHero);
     },
 
     handleTheCapes(newValue) {

@@ -5,6 +5,7 @@ import HeroDetail from './views/hero-detail.vue';
 
 Vue.use(Router);
 
+const parseProps = r => ({ id: parseInt(r.params.id) });
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -22,7 +23,7 @@ export default new Router({
       path: '/heroes/:id',
       name: 'hero-detail',
       component: HeroDetail,
-      props: true,
+      props: parseProps,
     },
     {
       path: '/about',
